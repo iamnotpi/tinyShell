@@ -62,11 +62,7 @@ void exitCommand(int argc, char* argv[]) {
 }
 
 void dirCommand(int argc, char* argv[]) {
-    // About WIN32_FIND_DATA: https://learn.microsoft.com/en-us/windows/win32/api/minwinbase/ns-minwinbase-win32_find_dataa
     WIN32_FIND_DATA findData;
-
-    // About HANDLE: https://stackoverflow.com/questions/902967/what-is-a-windows-handle
-    // About FindFirstFile: https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-findfirstfilea
     HANDLE hFind = FindFirstFile("./*", &findData);
 
     if (hFind == INVALID_HANDLE_VALUE) {
@@ -118,36 +114,15 @@ void runbatCommand(int argc, char* argv[]) {
                     // desktop, standard handles, and appearance of the main window for a 
                     // process at creation time.
     ZeroMemory(&si, sizeof(si));
-    si.cb = sizeof(si); // Size of the structure, in bytes
-    PROCESS_INFORMATION pi; // A structure that contains information about a newly created
-                            // process and its primary thread.
+    si.cb = sizeof(si); 
+    PROCESS_INFORMATION pi; 
     ZeroMemory(&pi, sizeof(pi));
-
-    // About lpApplicationName (1st parameter in CreateProcess):
-    // The lpApplicationName parameter can be NULL. 
-    // In that case, the module name must be the 
-    // first white space–delimited token in the lpCommandLine string.
-
-    // To run a batch file, start the command interpreter; 
-    // set lpApplicationName to cmd.exe 
-    // and set lpCommandLine to /c plus the name of the batch file
     char cmdLine[10000] = "cmd.exe /c ";
     for (int i = 0; i < argc; i++) {
         strcat(cmdLine, argv[i]);
         strcat(cmdLine, " ");
     }
-    if (!CreateProcess(NULL,           // No module name (use command line)
-                       cmdLine,        // Command line
-                       NULL,           // Process handle not inheritable
-                       NULL,           // Thread handle not inheritable
-                       FALSE,          // Set handle inheritance to FALSE
-                       0,              // No creation flags
-                       NULL,           // Use parent's environment block
-                       NULL,           // Use parent's starting directory 
-                       &si,            // Pointer to STARTUPINFO structure
-                       &pi)            // Pointer to PROCESS_INFORMATION structure
-    ) 
-    {
+    if (!CreateProcess(NULL, cmdLine, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi)) {
         printf("CreateProcess failed (%d).\n", GetLastError());
     }
 
@@ -218,11 +193,7 @@ void killCommand(int argc, char* argv[]) {
         // Kill all background processes
         for (int i = 0; i < bgCount; i++) {
             // OpenProcess returns an open handle to the specified process
-            HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, // The access to the process object
-                                                             // PROCESS_TERMINATE is required to terminate 
-                                                             // a process using TerminateProcess.
-                                          FALSE, // Will the processes created by this process inherit the handle?
-                                          bgProcesses[i].ProcessId); // The identifier of the local process to be opened
+            HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, FALSE, bgProcesses[i].ProcessId); 
             if (hProcess != NULL) {
                 TerminateProcess(hProcess, 0);
                 CloseHandle(hProcess);
