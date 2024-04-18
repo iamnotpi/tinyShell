@@ -1,4 +1,6 @@
 # TinyShell
+*Author:* Vu Duc Trung
+*Email:* Trung.VD220046@sis.hust.edu.vn
 ## Description
 My implementation of a simple `tinyshell` based on Win32API.
 ## Getting started
