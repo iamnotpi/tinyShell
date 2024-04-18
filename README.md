@@ -1,9 +1,9 @@
-# TinyShell
+# TinyShell 
 *Author:* Vu Duc Trung <br>
 *Email:* Trung.VD220046@sis.hust.edu.vn
-## Description
+## Description :information_source:
 My implementation of a simple `tinyshell` based on Win32API.
-## Getting started
+## Getting started :sparkles:
 To run `tinyshell`, open the terminal, navigate to the folder and compile the program using
 ```
 gcc -o tinyshell tinyshell.c commands/commands.c utils/utils.c
@@ -11,7 +11,7 @@ gcc -o foo.c
 ```
 And then you can run `tinyshell.exe`. <br>
 **Note:** Compiling `foo.c` is optional, but if you want to run  `child` command without any other executable, it's compulsory to compile `foo.c` since it is the default executable for the `child` command.
-## Commands
+## Commands :computer:
 `tinyshell` supports the following commands:
 - `filename [args, optional]`: Execute the given file with the following arguments, if any. `tinyshell` supports running 2 file types: `.bat` and `.exe`
 - `addpath`: Add a new path to the PATH environment variable. Note that `tinyshell` only inherits the system's PATH, using this command only affects the shell's path without adding anything to the system's PATH.
