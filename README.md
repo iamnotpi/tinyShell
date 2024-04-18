@@ -10,7 +10,7 @@ gcc -o tinyshell tinyshell.c commands/commands.c utils/utils.c
 gcc -o foo.c 
 ```
 And then you can run `tinyshell.exe`. <br>
-**Note:** Compiling `foo.c` is optional, but if you want to run `child` command without any other executable, it's compulsory to compile `foo.c` since it is the default executable for the `child` command. See `[child](#child)` for more details.
+**Note:** Compiling `foo.c` is optional, but if you want to run [`child`](#child) command without any other executable, it's compulsory to compile `foo.c` since it is the default executable for the [`child`](#child) command. See `[child](#child)` for more details.
 ## Commands :computer:
 `tinyshell` supports the following commands:
 - `filename [args, optional]`: Execute the given file with the following arguments, if any. `tinyshell` supports running 2 file types: `.bat` and `.exe`
