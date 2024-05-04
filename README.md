@@ -2,7 +2,7 @@
 *Author:* Vu Duc Trung <br>
 *Email:* Trung.VD220046@sis.hust.edu.vn
 ## Description :information_source:
-My implementation of a simple `tinyshell` using Win32 API.
+My implementation of a simple `tinyshell` using Win32 API for the OS Project: *myShell*.
 ## Getting started :sparkles:
 To run `tinyshell`, open the terminal, navigate to the folder and compile the program using
 ```
